@@ -1,0 +1,4 @@
+[tool]
+name = "Polyline Tool"
+version = "0.0.1"
+script = "./src/main.lua"

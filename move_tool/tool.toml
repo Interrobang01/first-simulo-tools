@@ -1,0 +1,4 @@
+[tool]
+name = "Move Tool"
+version = "0.1.2"
+script = "./src/main.lua"

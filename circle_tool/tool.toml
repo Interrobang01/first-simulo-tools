@@ -1,0 +1,4 @@
+[tool]
+name = "Circle Tool"
+version = "0.1.1"
+script = "./src/main.lua"

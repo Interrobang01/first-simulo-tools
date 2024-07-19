@@ -1,4 +1,4 @@
 [tool]
-name = "Polyline Tool"
+name = "[WIP] Polyline Tool"
 version = "0.0.1"
 script = "./src/main.lua"

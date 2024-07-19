@@ -176,7 +176,6 @@ function on_pointer_up(point)
                     color = 0xe5d3b9,
                 });
 
-                print("Added a cuboid at " .. pos.x .. ", " .. pos.y .. " with size " .. size.x .. ", " .. size.y);
             end;
         ]]
     });

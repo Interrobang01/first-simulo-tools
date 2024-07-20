@@ -204,7 +204,7 @@ function on_pointer_up(point)
                         position = line_start,
                         radius = 1/2,
                         color = 0xe5d3b9,
-                        is_static = false,
+                        is_static = true,
                     }
                     if i == #vertices then break end
                     local line_end = vertices[i+1]
@@ -216,7 +216,7 @@ function on_pointer_up(point)
                     local line = Scene:add_box({
                         position = pos,
                         size = vec2(sx/2, 1/2),
-                        is_static = false,
+                        is_static = true,
                         color = 0xe5d3b9,
                     });
                     line:set_angle(rotation)

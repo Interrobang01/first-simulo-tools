@@ -180,7 +180,7 @@ function on_pointer_up(point)
                 local line = Scene:add_box({
                     position = pos,
                     size = vec2(sx/2, 1/2),
-                    is_static = false,
+                    is_static = true,
                     color = 0xe5d3b9,
                 });
                 line:set_angle(rotation)

@@ -90,7 +90,7 @@ if distance < 0.1 then
             position = v.pos,
             radius = 1/2,
             color = 0xe5d3b9,
-            is_static = false,
+            is_static = true,
         }
         if i == #vertices then break end
         local line_end = vertices[i+1].pos
@@ -101,7 +101,7 @@ if distance < 0.1 then
         local line = Scene:add_box{
             position = line_pos,
             size = vec2(sx/2, 1/2),
-            is_static = false,
+            is_static = true,
             color = 0xe5d3b9
         }
         line:set_angle(rotation)

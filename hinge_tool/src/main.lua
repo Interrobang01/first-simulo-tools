@@ -126,7 +126,7 @@ function on_pointer_up(point)
                     object_b = target_2,
                     motor_enabled = motor,
                     motor_speed = math.pi*2, -- radians per second
-                    max_motor_torque = 100, -- maximum torque for the motor, in newton-meters
+                    max_motor_torque = 10000, -- maximum torque for the motor, in newton-meters
                 }
                 ]]
         }

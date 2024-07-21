@@ -1,5 +1,5 @@
 function on_update()
-    if Input:pointer_just_pressed() or Input:key_just_pressed("Delete") then
+    if Input:pointer_just_pressed() or Input:key_pressed("Delete") then
         on_pointer_down(Input:pointer_pos());
     end;
 end;

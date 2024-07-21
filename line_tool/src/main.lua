@@ -112,27 +112,32 @@ function on_pointer_move(point)
                     Scene:get_object_by_guid(input.prev_shape_guid):destroy();
                 end;
 
-                local line = nil
-
                 local sx = (adjusted_start_point-adjusted_end_point):magnitude()
                 if sx > 0 then
                     local pos = (adjusted_start_point+adjusted_end_point)/2
                     local relative_line_end = adjusted_end_point-pos
                     local rotation = math.atan(relative_line_end.y/relative_line_end.x)
-                    line = Scene:add_box({
+                    local line = Scene:add_box({
                         position = pos,
                         size = vec2(sx/2, 1/2),
                         is_static = true,
                         color = 0x695662,
                     });
                     line:set_angle(rotation)
+                    return {
+                        guid = line.guid,
+                        adjusted_start = adjusted_start_point,
+                        adjusted_end = adjusted_end_point,
+                    };
+                else
+                    return {
+                        guid = nil,
+                        adjusted_start = adjusted_start_point,
+                        adjusted_end = adjusted_end_point,
+                    };
                 end
 
-                return {
-                    guid = line.guid,
-                    adjusted_start = adjusted_start_point,
-                    adjusted_end = adjusted_end_point,
-                };
+
             ]]
         });
         if output ~= nil then

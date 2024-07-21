@@ -182,13 +182,30 @@ function on_pointer_up(point)
                 print("defined size and pos");
 
                 print("about to add a cuboid, color is " .. 0xe5d3b9 .. " size is " .. tostring(sx) .. " pos is " .. tostring(pos));
+                local thickness = 1/2
                 local line = Scene:add_box({
                     position = pos,
-                    size = vec2(sx/2, 1/2),
+                    size = vec2(sx/2, thickness),
                     is_static = true,
                     color = 0xe5d3b9,
                 });
                 line:set_angle(rotation)
+
+                local startcap = Scene:add_box({
+                    position = input.start_point,
+                    size = vec2(thickness/math.sqrt(2), thickness/math.sqrt(2)),
+                    is_static = true,
+                    color = 0xe5d3b9,
+                });
+                startcap:set_angle(rotation+math.pi/4)
+                local endcap = Scene:add_box({
+                    position = input.end_point,
+                    size = vec2(thickness/math.sqrt(2), thickness/math.sqrt(2)),
+                    is_static = true,
+                    color = 0xe5d3b9,
+                });
+                endcap:set_angle(rotation+math.pi/4)
+
 
             end;
         ]]

@@ -77,7 +77,8 @@ function on_pointer_move(point)
 
                 if snap then
                     local function round_vector(vector)
-                        return vec2(math.floor(vector.x+0.5),math.floor(vector.y+0.5))
+                        local scaledvector = vector*2
+                        return vec2(math.floor(scaledvector.x+0.5),math.floor(scaledvector.y+0.5))/2
                     end
                     adjusted_start_point = round_vector(adjusted_start_point)
                     adjusted_end_point = round_vector(adjusted_end_point)

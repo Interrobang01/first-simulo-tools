@@ -1,68 +1,68 @@
-local start = vec2(0, 0);
-local start_marker_guid = nil;
-local end_marker_guid = nil;
-local prev_shape_guid = nil;
-local adjusted_start = vec2(0, 0);
-local adjusted_end = vec2(0, 0);
+local start = vec2(0, 0)
+local start_marker_guid = nil
+local end_marker_guid = nil
+local prev_shape_guid = nil
+local adjusted_start = vec2(0, 0)
+local adjusted_end = vec2(0, 0)
 
 local side = true
-local prev_pointer_pos = vec2(0, 0);
+local prev_pointer_pos = vec2(0, 0)
 
 function on_update()
     if Input:pointer_just_pressed() then
-        on_pointer_down(Input:pointer_pos());
-    end;
+        on_pointer_down(Input:pointer_pos())
+    end
     if Input:pointer_just_released() then
-        on_pointer_up(Input:pointer_pos());
-    end;
+        on_pointer_up(Input:pointer_pos())
+    end
     if Input:pointer_pos() ~= prev_pointer_pos then
-        on_pointer_move(Input:pointer_pos());
-    end;
-    prev_pointer_pos = Input:pointer_pos();
+        on_pointer_move(Input:pointer_pos())
+    end
+    prev_pointer_pos = Input:pointer_pos()
     if Input:key_just_pressed("Space") then
         if side then side = false else side = true end
         print("Switched side")
     end
-end;
+end
 
 function on_pointer_down(point)
-    print("Pointer down at " .. point.x .. ", " .. point.y);
-    start = point;
-    local output = runtime_eval({
+    print("Pointer down at " .. point.x .. ", " .. point.y)
+    start = point
+    local output = runtime_eval{
         input = {
             point = point,
         },
         code = [[
-            local start_marker = Scene:add_box({
+            local start_marker = Scene:add_box{
                 position = input.point,
-                size = vec2(0.1, 0.1),
+                size = vec2(0.2, 0.2),
                 is_static = true,
                 color = 0xe5d3b9,
-            });
-            local end_marker = Scene:add_box({
+            }
+            local end_marker = Scene:add_box{
                 position = input.point,
-                size = vec2(0.1, 0.1),
+                size = vec2(0.2, 0.2),
                 is_static = true,
                 color = 0xe5d3b9,
-            });
+            }
             return {
                 start_guid = start_marker.guid,
                 end_guid = end_marker.guid,
-            };
+            }
         ]]
-    });
+    }
 
     if output ~= nil then
-        start_marker_guid = output.start_guid;
-        end_marker_guid = output.end_guid;
-        print('set guids');
-    end;
-end;
+        start_marker_guid = output.start_guid
+        end_marker_guid = output.end_guid
+        print('set guids')
+    end
+end
 
 function on_pointer_move(point)
     if start_marker_guid ~= nil then
-        print('start marker wasnt nil, realing up');
-        local output = runtime_eval({
+        print('start marker wasnt nil, realing up')
+        local output = runtime_eval{
             input = {
                 start_point = start,
                 end_point = point,
@@ -75,8 +75,8 @@ function on_pointer_move(point)
                 local square = Input:key_pressed("ShiftLeft") or Input:key_pressed("ShiftRight")
                 local centerscale = Input:key_pressed("AltLeft") or Input:key_pressed("AltRight")
 
-                local start_marker = Scene:get_object_by_guid(input.start_marker_guid);
-                local end_marker = Scene:get_object_by_guid(input.end_marker_guid);
+                local start_marker = Scene:get_object_by_guid(input.start_marker_guid)
+                local end_marker = Scene:get_object_by_guid(input.end_marker_guid)
                 local adjusted_start_point = input.start_point
                 local adjusted_end_point = input.end_point
 
@@ -111,12 +111,12 @@ function on_pointer_move(point)
                     adjusted_start_point = adjusted_start_point*2 - adjusted_end_point
                 end
 
-                start_marker:set_position(adjusted_start_point);
-                end_marker:set_position(adjusted_end_point);
+                start_marker:set_position(adjusted_start_point)
+                end_marker:set_position(adjusted_end_point)
 
                 if input.prev_shape_guid ~= nil then
-                    Scene:get_object_by_guid(input.prev_shape_guid):destroy();
-                end;
+                    Scene:get_object_by_guid(input.prev_shape_guid):destroy()
+                end
 
                 local circle = nil
 
@@ -133,32 +133,32 @@ function on_pointer_move(point)
                         guid = circle.guid,
                         adjusted_start = adjusted_start_point,
                         adjusted_end = adjusted_end_point,
-                    };
+                    }
                 else
                     return {
                         adjusted_start = adjusted_start_point,
                         adjusted_end = adjusted_end_point,
-                    };
+                    }
                 end
 
 
             ]]
-        });
+        }
         if output ~= nil then
             if output.guid ~= nil then
-                prev_shape_guid = output.guid;
+                prev_shape_guid = output.guid
             else
-                prev_shape_guid = nil;
+                prev_shape_guid = nil
             end
-            adjusted_start = output.adjusted_start;
-            adjusted_end = output.adjusted_end;
-        end;
-    end;
-end;
+            adjusted_start = output.adjusted_start
+            adjusted_end = output.adjusted_end
+        end
+    end
+end
 
 function on_pointer_up(point)
-    print("Pointer up!");
-    runtime_eval({
+    print("Pointer up!")
+    runtime_eval{
         input = {
             start_point = adjusted_start,
             end_point = adjusted_end,
@@ -168,19 +168,19 @@ function on_pointer_up(point)
             side = side,
         },
         code = [[
-            print("hi im in remote eval for the Epic Finale!!");
+            print("hi im in remote eval for the Epic Finale!!")
 
             if input.start_guid ~= nil then
-                print('about to destroy start ' .. tostring(input.start_guid));
-                print('about to destroy end ' .. tostring(input.end_guid));
-                Scene:get_object_by_guid(input.start_guid):destroy();
-                Scene:get_object_by_guid(input.end_guid):destroy();
-            end;
+                print('about to destroy start ' .. tostring(input.start_guid))
+                print('about to destroy end ' .. tostring(input.end_guid))
+                Scene:get_object_by_guid(input.start_guid):destroy()
+                Scene:get_object_by_guid(input.end_guid):destroy()
+            end
 
             if input.prev_shape_guid ~= nil then
-                print('about to destroy prev_shape_guid ' .. tostring(input.prev_shape_guid));
-                Scene:get_object_by_guid(input.prev_shape_guid):destroy();
-            end;
+                print('about to destroy prev_shape_guid ' .. tostring(input.prev_shape_guid))
+                Scene:get_object_by_guid(input.prev_shape_guid):destroy()
+            end
 
             local radius = (input.start_point-input.end_point):magnitude()/2
 
@@ -214,20 +214,20 @@ function on_pointer_up(point)
                     local relative_line_end = line_end-pos
                     local rotation = math.atan(relative_line_end.y/relative_line_end.x)
 
-                    local line = Scene:add_box({
+                    local line = Scene:add_box{
                         position = pos,
-                        size = vec2(sx/2, 1/2),
+                        size = vec2(sx, 1),
                         is_static = true,
                         color = 0xe5d3b9,
-                    });
+                    }
                     line:set_angle(rotation)
                 end
-            end;
+            end
         ]]
-    });
-    prev_shape_guid = nil;
-    start_marker_guid = nil;
-    end_marker_guid = nil;
-    adjusted_start = vec2(0, 0);
-    adjusted_end = vec2(0, 0);
-end;
+    }
+    prev_shape_guid = nil
+    start_marker_guid = nil
+    end_marker_guid = nil
+    adjusted_start = vec2(0, 0)
+    adjusted_end = vec2(0, 0)
+end

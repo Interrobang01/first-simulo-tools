@@ -27,7 +27,7 @@ function on_pointer_down(point)
 local vertex_pos = input.point
 --local vertex_marker = Scene:add_box{
 --    position = vertex_pos,
---    size = vec2(0.1, 0.1),
+--    size = vec2(0.2, 0.2),
 --    is_static = true,
 --    color = 0xe5d3b9,
 --}
@@ -100,7 +100,7 @@ if distance < 0.1 then
         local rotation = math.atan(relative_line_end.y/relative_line_end.x)
         local line = Scene:add_box{
             position = line_pos,
-            size = vec2(sx/2, 1/2),
+            size = vec2(sx, 1),
             is_static = true,
             color = 0xe5d3b9
         }

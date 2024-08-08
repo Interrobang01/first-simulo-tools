@@ -1,4 +1,4 @@
 [tool]
-name = "Line Tool"
+name = "Line"
 version = "0.1.2"
 script = "./src/main.lua"

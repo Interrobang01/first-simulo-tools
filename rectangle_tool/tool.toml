@@ -1,4 +1,4 @@
 [tool]
-name = "Rectangle Tool 2"
+name = "Rectangle 2"
 version = "0.1.2"
 script = "./src/main.lua"

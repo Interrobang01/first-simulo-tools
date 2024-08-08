@@ -1,4 +1,4 @@
 [tool]
-name = "Move Tool"
+name = "Move"
 version = "0.1.2"
 script = "./src/main.lua"

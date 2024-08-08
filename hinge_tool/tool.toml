@@ -1,4 +1,4 @@
 [tool]
-name = "Hinge Tool"
+name = "Hinge"
 version = "0.1.1"
 script = "./src/main.lua"

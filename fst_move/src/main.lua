@@ -58,6 +58,7 @@ function on_pointer_move(point)
         runtime_eval{
             input = {
                 start_position = start_object_position,
+                point = point,
                 start = start,
                 delta = delta,
                 guid = selected_object_guid,
@@ -69,6 +70,9 @@ function on_pointer_move(point)
                 local center_snap = Input:key_pressed("AltLeft") or Input:key_pressed("AltRight")
                 
                 local delta = Input:snap_if_preferred(input.delta)
+                if center_snap then
+                    delta = Input:snap_if_preferred(input.point)-input.start_position
+                end
                 if line then
                     local horiz = math.abs(delta.x) -- y = 0
                     local vert = math.abs(delta.y) -- x = 0
@@ -87,9 +91,6 @@ function on_pointer_move(point)
                     
                 end
                 local position = input.start_position + delta
-                if center_snap then
-                    position = Input:snap_if_preferred(position)
-                end
 
                 obj:set_position(position)
             ]]

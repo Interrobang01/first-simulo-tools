@@ -27,7 +27,7 @@ function on_pointer_down(point)
             point = point,
         },
         code = [[
-            local selected_objects = Scene:overlap_circle{
+            local selected_objects = Scene:get_objects_in_circle{
                 position = input.point,
                 radius = 0,
             }

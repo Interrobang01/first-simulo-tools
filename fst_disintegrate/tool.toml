@@ -1,0 +1,5 @@
+[tool]
+name = "Disintegrate"
+version = "0.1.1"
+script = "./src/main.lua"
+icon="./icon.png"

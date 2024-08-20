@@ -1,0 +1,5 @@
+[tool]
+name = "[WIP] Polyline"
+version = "0.0.3"
+script = "./src/main.lua"
+icon="./icon.png"

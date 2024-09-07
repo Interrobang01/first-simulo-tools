@@ -40,6 +40,8 @@ function on_pointer_down(point)
                 is_static = true,
                 color = 0xe5d3b9,
             }
+            start_marker:temp_set_collides(false)
+            end_marker:temp_set_collides(false)
             return {
                 start_guid = start_marker.guid,
                 end_guid = end_marker.guid,
@@ -116,6 +118,7 @@ function on_pointer_move(point)
                         color = 0x695662,
                     }
                     line:set_angle(rotation)
+                    line:temp_set_collides(false)
                     return {
                         guid = line.guid,
                         adjusted_start = adjusted_start_point,
@@ -151,7 +154,6 @@ function on_pointer_up(point)
             prev_shape_guid = prev_shape_guid,
         },
         code = [[
-            print("hi im in remote eval for the Epic Finale!!")
 
             if input.start_guid ~= nil then
                 print('about to destroy start ' .. tostring(input.start_guid))

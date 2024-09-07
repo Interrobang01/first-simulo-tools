@@ -1,5 +1,4 @@
 [tool]
-name = "Hinge"
+name = "[Deprecated] Hinge"
 version = "0.1.2"
 script = "./src/main.lua"
-icon="./icon.png"

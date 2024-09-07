@@ -1,7 +1,7 @@
 local start = vec2(0, 0)
 local selected_object_guid = nil
 local start_object_position = nil
-local start_object_static_state = false
+local start_object_body_type = false
 local prev_point = nil
 
 local prev_pointer_pos = vec2(0, 0);
@@ -33,12 +33,12 @@ function on_pointer_down(point)
             }
             if #selected_objects == 0 then return end
             selected_object = selected_objects[1]
-            local was_static = selected_object:temp_get_is_static()
-            selected_object:temp_set_is_static(true)
+            local body_type = selected_object:get_body_type()
+            selected_object:set_body_type(BodyType.Static)
             return {
                 selected_object_guid = selected_object.guid,
                 start_object_position = selected_object:get_position(),
-                start_object_static_state = was_static,
+                start_object_body_type = body_type,
             }
         ]]
     }
@@ -46,7 +46,7 @@ function on_pointer_down(point)
     if output ~= nil then
         selected_object_guid = output.selected_object_guid
         start_object_position = output.start_object_position
-        start_object_static_state = output.start_object_static_state
+        start_object_body_type = output.start_object_body_type
     end
     prev_point = point
 end
@@ -107,13 +107,13 @@ function on_pointer_up(point)
                 point = point,
                 prev_point = prev_point,
                 guid = selected_object_guid,
-                was_static = start_object_static_state,
+                body_type = start_object_body_type,
             },
             code = [[
                 local obj = Scene:get_object_by_guid(input.guid)
-                obj:temp_set_is_static(input.was_static)
-                if input.was_static == false then
-                    obj:set_linear_velocity((input.point - input.prev_point)*10)
+                obj:set_body_type(input.body_type)
+                if input.body_type ~= BodyType.Static then
+                    obj:set_linear_velocity((input.point - input.prev_point)*60)
                 end
             ]]
         }
@@ -121,6 +121,6 @@ function on_pointer_up(point)
     start = vec2(0, 0)
     selected_object_guid = nil
     start_object_position = nil
-    start_object_static_state = false
+    start_object_body_type = false
     prev_point = nil
 end

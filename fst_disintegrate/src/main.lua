@@ -53,7 +53,7 @@ if objects_in_circle[1] ~= nil then
     local obj = objects_in_circle[1];
     local object_position = obj:get_position()
     local obj_size = get_size(obj,object_position)
-    local object_color = obj.color
+    local object_color = obj:get_color()
     local object_velocity = obj:get_linear_velocity()
     local scale = obj_size/16
     for x = -16,16 do
@@ -84,6 +84,6 @@ if objects_in_circle[1] ~= nil then
 else
     print("no hit")
 end
-            ]] -- we need this so the double closing square brackets in the code don't close the string
+            ]]
     }
 end

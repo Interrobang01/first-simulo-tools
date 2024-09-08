@@ -1,9 +1,9 @@
 # Hello and welcome to First Simulo Tools, by me, Interrobang!
 
 To join this wonderful world of tools, paste
-
-```@interrobang/first_simulo_tools;https://github.com/Interrobang01/first-simulo-tools.git```
-
+```
+@interrobang/first_simulo_tools;https://github.com/Interrobang01/first-simulo-tools.git
+```
 into the package manager and hit enter.
 
 The remainder of this readme will be dedicated towards documenting the tools in this repo.

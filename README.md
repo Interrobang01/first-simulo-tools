@@ -52,6 +52,11 @@ Hold `shift` to make it snap to orthogonal lines.
 
 Hold `alt` to center the object on your cursor.
 
+### Precision Drag
+Click and drag to move, Q and E to rotate!
+
+Hold `shift` to make it work like the normal drag tool.
+
 ### Rotate
 Rotate stuff, at long last.
 

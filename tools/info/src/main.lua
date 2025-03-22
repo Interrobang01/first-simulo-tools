@@ -14,18 +14,18 @@ local objects_in_circle = Scene:get_objects_in_circle{
     position = input.point,
     radius = 0,
 }
-Console:log("Pos is "..tostring(input.point))
+print("Pos is "..tostring(input.point))
 if #objects_in_circle > 0 then
     for i = 1,#objects_in_circle do
         local obj = objects_in_circle[i]
         local name = obj:get_name()
         local objcolor = obj:get_color()
-        Console:log(" ")
-        Console:log("Object name is "..name)
-        Console:log("GUID is "..tostring(obj.guid))
-        Console:log("position is "..tostring(obj:get_position()))
-        Console:log("body type is "..tostring(obj:get_body_type()))
-        Console:log("color is "..tostring(objcolor.r).." "..tostring(objcolor.g).." "..tostring(objcolor.b).." "..tostring(objcolor.a))
+        print(" ")
+        print("Object name is "..name)
+        print("GUID is "..tostring(obj.guid))
+        print("position is "..tostring(obj:get_position()))
+        print("body type is "..tostring(obj:get_body_type()))
+        print("color is "..tostring(objcolor.r).." "..tostring(objcolor.g).." "..tostring(objcolor.b).." "..tostring(objcolor.a))
     end
 end
         ]]

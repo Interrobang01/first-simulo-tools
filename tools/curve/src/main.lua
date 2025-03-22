@@ -36,13 +36,13 @@ function on_pointer_down(point)
             local start_marker = Scene:add_box{
                 position = input.point,
                 size = vec2(0.2, 0.2),
-                is_static = true,
+                body_type = BodyType.Static,
                 color = 0xe5d3b9,
             }
             local end_marker = Scene:add_box{
                 position = input.point,
                 size = vec2(0.2, 0.2),
-                is_static = true,
+                body_type = BodyType.Static,
                 color = 0xe5d3b9,
             }
             return {
@@ -117,7 +117,7 @@ function on_pointer_move(point)
                     circle = Scene:add_circle{
                         position = pos,
                         radius = radius/2,
-                        is_static = true,
+                        body_type = BodyType.Static,
                         color = 0x695662,
                     }
                     return {
@@ -196,7 +196,7 @@ function on_pointer_up(point)
                         position = line_start,
                         radius = 1/2,
                         color = 0xe5d3b9,
-                        is_static = true,
+                        body_type = BodyType.Static,
                     }
                     if i == #vertices then break end
                     local line_end = vertices[i+1]
@@ -208,7 +208,7 @@ function on_pointer_up(point)
                     local line = Scene:add_box{
                         position = pos,
                         size = vec2(sx, 1),
-                        is_static = true,
+                        body_type = BodyType.Static,
                         color = 0xe5d3b9,
                     }
                     line:set_angle(rotation)

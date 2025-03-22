@@ -106,7 +106,7 @@ local function endcapify(type)
                 name = "endcap",
                 position = endcap_pos,
                 radius = endcap_sy/2,
-                is_static = true,
+                body_type = BodyType.Static,
                 color = color,
             }
         end
@@ -115,7 +115,7 @@ local function endcapify(type)
                 name = "endcap",
                 position = endcap_pos,
                 size = vec2(endcap_sy/math.sqrt(2),endcap_sy/math.sqrt(2)),
-                is_static = true,
+                body_type = BodyType.Static,
                 color = color,
             }
             box:set_angle(endcap_rotation+math.pi/4)
@@ -222,7 +222,7 @@ function on_pointer_move(point)
                         name = "marker",
                         position = marker_pos,
                         size = vec2(0.1,0.1),
-                        is_static = true,
+                        body_type = BodyType.Static,
                         color = 0,
                     }
                     box:temp_set_collides(false)
@@ -252,7 +252,7 @@ function on_pointer_move(point)
                     local line = Scene:add_box{
                         position = pos,
                         size = vec2(sx, input.sy),
-                        is_static = true,
+                        body_type = BodyType.Static,
                         color = 0x695662,
                     }
                     line:set_angle(rotation)
@@ -302,7 +302,7 @@ function on_pointer_up(point)
                     local line = Scene:add_box{
                         position = pos,
                         size = vec2(sx, input.sy),
-                        is_static = true,
+                        body_type = BodyType.Static,
                         color = 0xe5d3b9,
                     }
                     line:set_angle(rotation)

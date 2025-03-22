@@ -73,7 +73,7 @@ if objects_in_circle[1] ~= nil then
                     name = "debris",
                     position = object_position + (vec2(x,y)*scale),
                     size = vec2(scale,scale),
-                    is_static = false,
+                    body_type = BodyType.Dynamic,
                     color = object_color,
                 }
                 debris:set_linear_velocity(object_velocity)

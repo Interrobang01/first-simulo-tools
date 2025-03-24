@@ -1,6 +1,6 @@
 function on_update()
-    if Input:pointer_just_pressed() then
-        on_pointer_down(Input:pointer_pos())
+    if self:pointer_just_pressed() then
+        on_pointer_down(self:pointer_pos())
     end
 end
 

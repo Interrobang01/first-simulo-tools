@@ -5,16 +5,16 @@ local drag_ghost_guid = nil
 local prev_pointer_pos = vec2(0, 0)
 
 function on_update()
-    if Input:pointer_just_pressed() then
-        on_pointer_down(Input:pointer_pos())
+    if self:pointer_just_pressed() then
+        on_pointer_down(self:pointer_pos())
     end
-    if Input:pointer_just_released() then
-        on_pointer_up(Input:pointer_pos())
+    if self:pointer_just_released() then
+        on_pointer_up(self:pointer_pos())
     end
-    if Input:pointer_pos() ~= prev_pointer_pos then
-        on_pointer_move(Input:pointer_pos())
+    if self:pointer_pos() ~= prev_pointer_pos then
+        on_pointer_move(self:pointer_pos())
     end
-    prev_pointer_pos = Input:pointer_pos()
+    prev_pointer_pos = self:pointer_pos()
 end
 
 function on_pointer_down(point)
@@ -61,7 +61,7 @@ end
 
 function on_pointer_move(point)
     if selected_object_guid ~= nil then
-        local imprecision_mode = Input:key_pressed("ShiftLeft") or Input:key_pressed("ShiftRight")
+        local imprecision_mode = self:key_pressed("ShiftLeft") or self:key_pressed("ShiftRight")
         local output = runtime_eval{
             input = {
                 point = point,
@@ -104,11 +104,11 @@ end
                 force = obj_vel_diff*20 * obj:get_mass()
                 new_angular_velocity = 0
 
-                if Input:key_pressed("Q") then
+                if self:key_pressed("Q") then
                     new_angular_velocity = new_angular_velocity + 2
                 end
 
-                if Input:key_pressed("E") then
+                if self:key_pressed("E") then
                     new_angular_velocity = new_angular_velocity - 2
                 end
 

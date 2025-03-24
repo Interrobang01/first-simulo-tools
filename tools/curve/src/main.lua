@@ -9,17 +9,17 @@ local side = true
 local prev_pointer_pos = vec2(0, 0)
 
 function on_update()
-    if Input:pointer_just_pressed() then
-        on_pointer_down(Input:pointer_pos())
+    if self:pointer_just_pressed() then
+        on_pointer_down(self:pointer_pos())
     end
-    if Input:pointer_just_released() then
-        on_pointer_up(Input:pointer_pos())
+    if self:pointer_just_released() then
+        on_pointer_up(self:pointer_pos())
     end
-    if Input:pointer_pos() ~= prev_pointer_pos then
-        on_pointer_move(Input:pointer_pos())
+    if self:pointer_pos() ~= prev_pointer_pos then
+        on_pointer_move(self:pointer_pos())
     end
-    prev_pointer_pos = Input:pointer_pos()
-    if Input:key_just_pressed("Space") then
+    prev_pointer_pos = self:pointer_pos()
+    if self:key_just_pressed("Space") then
         if side then side = false else side = true end
         print("Switched side")
     end
@@ -71,13 +71,13 @@ function on_pointer_move(point)
                 prev_shape_guid = prev_shape_guid,
             },
             code = [[
-                local square = Input:key_pressed("ShiftLeft") or Input:key_pressed("ShiftRight")
-                local centerscale = Input:key_pressed("AltLeft") or Input:key_pressed("AltRight")
+                local square = self:key_pressed("ShiftLeft") or self:key_pressed("ShiftRight")
+                local centerscale = self:key_pressed("AltLeft") or self:key_pressed("AltRight")
 
                 local start_marker = Scene:get_object_by_guid(input.start_marker_guid)
                 local end_marker = Scene:get_object_by_guid(input.end_marker_guid)
-                local adjusted_start_point = Input:snap_if_preferred(input.start_point)
-                local adjusted_end_point = Input:snap_if_preferred(input.end_point)
+                local adjusted_start_point = self:snap_if_preferred(input.start_point)
+                local adjusted_end_point = self:snap_if_preferred(input.end_point)
 
                 if square then
                     local delta = adjusted_end_point - adjusted_start_point

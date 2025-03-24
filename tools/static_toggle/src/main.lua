@@ -1,9 +1,9 @@
 function on_update()
-    local shift = Input:key_pressed("ShiftLeft") or Input:key_pressed("ShiftRight")
-    local alt = Input:key_pressed("AltLeft") or Input:key_pressed("AltRight")
-    local control = Input:key_pressed("ControlLeft") or Input:key_pressed("ControlRight")
-    if Input:pointer_just_pressed() or shift or alt or control then
-        on_pointer_down(Input:pointer_pos(),shift,alt,control)
+    local shift = self:key_pressed("ShiftLeft") or self:key_pressed("ShiftRight")
+    local alt = self:key_pressed("AltLeft") or self:key_pressed("AltRight")
+    local control = self:key_pressed("ControlLeft") or self:key_pressed("ControlRight")
+    if self:pointer_just_pressed() or shift or alt or control then
+        on_pointer_down(self:pointer_pos(),shift,alt,control)
     end
 end
 

@@ -145,37 +145,37 @@ end
 local prev_pointer_pos = vec2(0, 0)
 
 function on_update()
-    if Input:pointer_just_pressed() then
-        on_pointer_down(Input:pointer_pos())
+    if self:pointer_just_pressed() then
+        on_pointer_down(self:pointer_pos())
     end
-    if Input:pointer_just_released() then
-        on_pointer_up(Input:pointer_pos())
+    if self:pointer_just_released() then
+        on_pointer_up(self:pointer_pos())
     end
-    if Input:pointer_pos() ~= prev_pointer_pos then
-        on_pointer_move(Input:pointer_pos())
+    if self:pointer_pos() ~= prev_pointer_pos then
+        on_pointer_move(self:pointer_pos())
     end
-    if Input:key_just_pressed("Escape") then
+    if self:key_just_pressed("Escape") then
         local output = runtime_eval{
             input = guids,
             code = clear_ghosts,
         }
         reset_variables()
     end
-    prev_pointer_pos = Input:pointer_pos()
+    prev_pointer_pos = self:pointer_pos()
 end
 
 function on_pointer_down(point)
     print("down! mode is "..tostring(mode))
     if mode == mode_enum.inactive then
         mode = mode_enum.first_click_down
-        point_1 = Input:snap_if_preferred(point)
+        point_1 = self:snap_if_preferred(point)
     end
     if mode == mode_enum.first_click_down then
         print("AAAAAAAA")
     end
     if mode == mode_enum.first_click_up then
         mode = mode_enum.second_click_down
-        point_3 = Input:snap_if_preferred(point)
+        point_3 = self:snap_if_preferred(point)
     end
     if mode == mode_enum.second_click_down then
         print("EEEEEEEEE")
@@ -186,18 +186,18 @@ function on_pointer_move(point)
     print("move! mode is "..tostring(mode))
     if mode ~= mode_enum.inactive then
         if mode == mode_enum.first_click_down then
-            point_2 = Input:snap_if_preferred(point)
+            point_2 = self:snap_if_preferred(point)
         elseif mode == mode_enum.first_click_up then
-            point_3 = Input:snap_if_preferred(point)
+            point_3 = self:snap_if_preferred(point)
         elseif mode == mode_enum.second_click_down then
-            point_4 = Input:snap_if_preferred(point)
+            point_4 = self:snap_if_preferred(point)
         end
         input = {}
         local faux_point_1 = point_1
         local faux_point_2 = point_2
         local faux_point_3 = point_3
         local mirror_mode = false
-        if Input:key_pressed("AltLeft") then
+        if self:key_pressed("AltLeft") then
             if mode == mode_enum.first_click_down then
                 faux_point_1 = faux_point_1 - (faux_point_2 - faux_point_1)
             end
@@ -277,8 +277,8 @@ function on_pointer_up(point)
     end
     if mode == mode_enum.first_click_down then
 
-        point_2 = Input:snap_if_preferred(point)
-        if Input:key_pressed("AltLeft") then
+        point_2 = self:snap_if_preferred(point)
+        if self:key_pressed("AltLeft") then
             point_1 = point_1 - (point_2 - point_1)
         end
         mode = mode_enum.first_click_up

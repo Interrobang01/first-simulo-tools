@@ -1,0 +1,75 @@
+[tool]
+name = "Polygon Boolean"
+version = "0.1.0"
+script = "./src/main.lua"
+icon = "./icon.png"
+
+[[property]]
+id = "delete_original_objects"
+
+name = "Delete original objects"
+tooltip = "Delete the two objects used to create the product polygon"
+
+input_type = "toggle"
+
+default_value = true
+
+[[property]]
+id = "make_convex"
+
+name = "Make convex"
+tooltip = "Make the product polygon out of several smaller convex polygons, which are less buggy"
+
+input_type = "toggle"
+
+default_value = false
+
+[[property]]
+id = "bolt_products"
+
+name = "Bolt products"
+tooltip = "Bolt everything created by the operation together (tip: use with 'Make convex'"
+
+input_type = "toggle"
+
+default_value = true
+
+[[property]]
+id = "use_connected_objects"
+
+name = "Use connected objects"
+tooltip = "Pretend that the things bolted or hinged to the used objects are unioned"
+
+input_type = "toggle"
+
+default_value = true
+
+[[property]]
+id = "operation_or"
+
+name = "Union / OR"
+tooltip = "Set 'OR' as the boolean operation"
+
+input_type = "toggle"
+
+default_value = false
+
+[[property]]
+id = "operation_not"
+
+name = "Exclude / NOT"
+tooltip = "Set 'NOT' as the boolean operation"
+
+input_type = "toggle"
+
+default_value = true
+
+[[property]]
+id = "operation_and"
+
+name = "Overlap / AND"
+tooltip = "Set 'AND' as the boolean operation"
+
+input_type = "toggle"
+
+default_value = false

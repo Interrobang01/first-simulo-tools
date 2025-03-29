@@ -1,3 +1,4 @@
 [package]
 name = "First Simulo Tools"
 version = "0.2.0"
+description = "Adds new tools to Simulo. The first of its kind."

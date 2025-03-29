@@ -2,7 +2,7 @@ local function on_pointer_down(point)
     RemoteScene:run
     {
         input = {point = point},
-        code = "require('./packages/@interrobang/first_simulo_tools/tools/info/src/on_pointer_down_runtime.lua')()"
+        code = "require('./packages/@interrobang/ibtools/tools/info/src/on_pointer_down_runtime.lua')()"
     }
 end
 

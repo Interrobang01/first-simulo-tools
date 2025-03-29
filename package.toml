@@ -1,4 +1,4 @@
 [package]
 name = "IbTools"
-version = "0.2.0"
+version = "0.2.2"
 description = "Adds new tools to Simulo. AKA First Simulo Tools."

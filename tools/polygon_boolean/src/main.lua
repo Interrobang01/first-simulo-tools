@@ -16,6 +16,6 @@ function on_pointer_down(point)
             operation_not = self:get_property("operation_not").value,
             operation_and = self:get_property("operation_and").value,
         },
-        code = "require('@interrobang/first_simulo_tools/tools/polygon_boolean/src/on_pointer_down_runtime.lua')()"
+        code = "require('@interrobang/ibtools/tools/polygon_boolean/src/on_pointer_down_runtime.lua')()"
     }
 end
